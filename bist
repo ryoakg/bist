@@ -19,8 +19,9 @@ USAGE:
 COMMAND:
     list
         listup local gist repository.
-    list [GIST_NUMBER]
-        listup specified gist files.
+
+    re
+        put environment re-construction script.
 
     show [GIST_NUMBER | FILENAME]
         cat gist file.
@@ -115,6 +116,10 @@ function bist_list() {
   find $BISTDIR_REPOS -maxdepth 2 -type f | sed -e "s|^${BISTDIR_REPOS}/||" -e 's|/|	|g'
 }
 
+function bist_re() {
+  find $BISTDIR_REPOS -maxdepth 2 -type f | sed -e "s|^${BISTDIR_REPOS}/||;" -e 's|/| # |g' -e 's/^/bist install /'
+}
+
 #
 # bist rehash
 #
@@ -156,6 +161,7 @@ shift
 
 case $command in
     "list" | "l" ) bist_list $* ;;
+    "re" ) bist_re $* ;;
     "show" | "s" ) bist_show $* ;;
     "rehash" | "r" ) bist_rehash ;;
     "rm" ) bist_rm $* ;;
