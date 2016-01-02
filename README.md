@@ -4,7 +4,10 @@ Control gist files to install.
 
 # install
 
-    curl -L https://raw.github.com/mattak/bist/master/install.sh >& /dev/null | sh
+    mkdir -p ~/.bist/bin
+    cd ~/.bist/bin
+    curl https://raw.githubusercontent.com/ryoakg/bist/master/bist > bist
+    chmod +x bist
 
 # commands
 
