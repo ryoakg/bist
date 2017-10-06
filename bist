@@ -151,11 +151,6 @@ function bist_init () {
 # -----------------------------------
 # main
 # -----------------------------------
-
-if [ $# -lt 1 ]; then
-    usage
-fi
-
 command=$1
 shift
 
@@ -168,4 +163,5 @@ case $command in
     "install" | "i" ) bist_install $* ;;
     "init" ) bist_init $* ;;
     "update" | "u" ) bist_update $* ;;
+    *) usage ;;
 esac
