@@ -20,7 +20,7 @@ COMMAND:
     list
         listup local gist repository.
 
-    re
+    reconstruction-script
         put environment re-construction script.
 
     show [GIST_NUMBER | FILENAME]
@@ -116,8 +116,8 @@ function bist_list() {
   find $BISTDIR_REPOS -maxdepth 2 -type f | sed -e "s|^${BISTDIR_REPOS}/||" -e 's|/|	|g'
 }
 
-function bist_re() {
-  find $BISTDIR_REPOS -maxdepth 2 -type f | sed -e "s|^${BISTDIR_REPOS}/||;" -e 's|/| # |g' -e 's/^/bist install /'
+function bist_reconstruction_script() {
+  find $BISTDIR_REPOS -maxdepth 2 -type f | sed -e "s|^${BISTDIR_REPOS}/||" -e 's|/| # |g' -e 's/^/bist install /'
 }
 
 #
@@ -161,7 +161,7 @@ shift
 
 case $command in
     "list" | "l" ) bist_list $* ;;
-    "re" ) bist_re $* ;;
+    "reconstruction-script" ) bist_reconstruction_script $* ;;
     "show" | "s" ) bist_show $* ;;
     "rehash" | "r" ) bist_rehash ;;
     "rm" ) bist_rm $* ;;
